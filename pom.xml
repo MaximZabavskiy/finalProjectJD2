@@ -11,8 +11,8 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>com.noirix</groupId>
-    <artifactId>TestMavenJD2Project</artifactId>
+    <groupId>by.zabavskiy</groupId>
+    <artifactId>FinalProjectJD2Project</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
 

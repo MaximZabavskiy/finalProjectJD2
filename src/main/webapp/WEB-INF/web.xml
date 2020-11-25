@@ -26,12 +26,12 @@
 
     <filter>
         <filter-name>CharsetFilter</filter-name>
-        <filter-class>com.noirix.filter.CharsetFilter</filter-class>
+        <filter-class>by.zabavskiy.filter.CharsetFilter</filter-class>
     </filter>
 
     <filter>
         <filter-name>AuthHeaderFilter</filter-name>
-        <filter-class>com.noirix.filter.AuthHeaderFilter</filter-class>
+        <filter-class>by.zabavskiy.filter.AuthHeaderFilter</filter-class>
     </filter>
 
     <!--    <servlet>-->
