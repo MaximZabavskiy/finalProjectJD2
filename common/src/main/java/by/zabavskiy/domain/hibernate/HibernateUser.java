@@ -108,4 +108,18 @@ public class HibernateUser implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<HibernateProgram> programs = Collections.emptySet();
+
+    @JsonManagedReference
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<HibernateWorkout> workouts = Collections.emptySet();
+
+    @JsonManagedReference
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<HibernateCalendar> calendar = Collections.emptySet();
+
+    @OneToOne(mappedBy = "user")
+    private HibernatePerfomance perfomance;
+
 }

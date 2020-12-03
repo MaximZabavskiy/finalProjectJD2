@@ -1,5 +1,6 @@
 package by.zabavskiy.controller.convert;
 
+import by.zabavskiy.domain.hibernate.HibernateUser;
 import com.htp.controller.request.UserCreateRequest;
 import com.htp.domain.Roles;
 import com.htp.domain.hibernate.HibernateRole;
