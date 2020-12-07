@@ -1,12 +1,13 @@
 package by.zabavskiy.controller;
 
-import com.htp.controller.request.UserCreateRequest;
-import com.htp.dao.HibernateUserDao;
-import com.htp.domain.Roles;
-import com.htp.domain.hibernate.HibernateRole;
-import com.htp.domain.hibernate.HibernateUser;
-import com.htp.domain.hibernate.TimedEntity;
-import com.htp.service.HibUserService;
+
+import by.zabavskiy.controller.request.UserCreateRequest;
+import by.zabavskiy.daorepository.HibernateUserDao;
+import by.zabavskiy.domain.enums.*;
+import by.zabavskiy.domain.hibernate.HibernateRole;
+import by.zabavskiy.domain.hibernate.HibernateUser;
+import by.zabavskiy.domain.hibernate.TimedEntity;
+import by.zabavskiy.service.HibUserService;
 import io.swagger.annotations.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -80,20 +81,27 @@ public class HibernateUserController {
     public HibernateUser create(@Valid @RequestBody UserCreateRequest createRequest) throws SQLException {
 
         HibernateUser user = new HibernateUser();
-        user.setUsername(createRequest.getUsername());
+
+        user.setName(createRequest.getName());
         user.setSurname(createRequest.getSurname());
-        user.setBirthDate(createRequest.getBirthDate());
-        user.setLogin(createRequest.getLogin());
+        user.setUsername(createRequest.getUsername());
         user.setPassword(createRequest.getPassword());
+        user.setEmail(createRequest.getEmail());
+        user.setGender(createRequest.getGender());
+        user.setBirthDate(createRequest.getBirthDate());
+        user.setHeight(createRequest.getHeight());
+        user.setWeight(createRequest.getWeight());
+        user.setFitnessLevel(createRequest.getFitnessLevel());
+        user.setGoalName(createRequest.getGoalName());
+        user.setStatus(createRequest.getStatus());
 
         TimedEntity timedEntity = new TimedEntity();
         timedEntity.setCreated(new Timestamp(new Date().getTime()));
         timedEntity.setChanged(new Timestamp(new Date().getTime()));
         user.setProfileUpdates(timedEntity);
-        user.setWeight(createRequest.getWeight());
 
         HibernateRole hibernateRole = new HibernateRole();
-        hibernateRole.setRoleName(Roles.ROLE_USER.name());
+        hibernateRole.setRoleName(SystemRoles.ROLE_USER.name());
         hibernateRole.setUser(user);
         user.setRoles(Collections.singleton(hibernateRole));
 

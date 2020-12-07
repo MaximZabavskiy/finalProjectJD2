@@ -1,6 +1,7 @@
 package by.zabavskiy.controller;
 
-import com.htp.controller.response.ErrorMessage;
+
+import by.zabavskiy.controller.response.ErrorMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

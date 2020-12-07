@@ -1,8 +1,9 @@
 package by.zabavskiy.controller.convert;
 
-import com.htp.controller.request.UserUpdateRequest;
-import com.htp.domain.hibernate.HibernateUser;
-import com.htp.exceptions.ResourceNotFoundException;
+
+import by.zabavskiy.controller.request.UserUpdateRequest;
+import by.zabavskiy.domain.hibernate.HibernateUser;
+import by.zabavskiy.exceptions.ResourceNotFoundException;
 import org.springframework.stereotype.Component;
 
 import static java.util.Optional.ofNullable;

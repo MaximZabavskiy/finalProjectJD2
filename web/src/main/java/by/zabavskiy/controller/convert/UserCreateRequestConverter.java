@@ -1,11 +1,12 @@
 package by.zabavskiy.controller.convert;
 
+
+
+import by.zabavskiy.controller.request.UserCreateRequest;
+import by.zabavskiy.domain.enums.SystemRoles;
+import by.zabavskiy.domain.hibernate.HibernateRole;
 import by.zabavskiy.domain.hibernate.HibernateUser;
-import com.htp.controller.request.UserCreateRequest;
-import com.htp.domain.Roles;
-import com.htp.domain.hibernate.HibernateRole;
-import com.htp.domain.hibernate.HibernateUser;
-import com.htp.domain.hibernate.TimedEntity;
+import by.zabavskiy.domain.hibernate.TimedEntity;
 import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
@@ -26,7 +27,7 @@ public class UserCreateRequestConverter extends UserRequestConverter<UserCreateR
         user.setProfileUpdates(timedEntity);
 
         HibernateRole hibernateRole = new HibernateRole();
-        hibernateRole.setRoleName(Roles.ROLE_USER.name());
+        hibernateRole.setRoleName(SystemRoles.ROLE_USER.name());
         hibernateRole.setUser(user);
         user.setRoles(Collections.singleton(hibernateRole));
 
