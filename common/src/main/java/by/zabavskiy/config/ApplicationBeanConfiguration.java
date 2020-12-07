@@ -1,7 +1,7 @@
 package by.zabavskiy.config;
 
+import by.zabavskiy.domain.NotBeanByDefault;
 import com.github.benmanes.caffeine.cache.Caffeine;
-import com.htp.domain.NotBeanByDefault;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
@@ -79,9 +79,9 @@ public class ApplicationBeanConfiguration /*implements LoadTimeWeavingConfigurer
         LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
 
         // Package contain entity classes
-        factoryBean.setPackagesToScan("com.htp");
+        factoryBean.setPackagesToScan("by.zabavskiy");
         factoryBean.setDataSource(dataSource);
-        factoryBean.setAnnotatedPackages("com.htp");
+        factoryBean.setAnnotatedPackages("by.zabavskiy");
         factoryBean.setHibernateProperties(getAdditionalProperties());
         factoryBean.afterPropertiesSet();
         //
@@ -99,7 +99,7 @@ public class ApplicationBeanConfiguration /*implements LoadTimeWeavingConfigurer
         LocalContainerEntityManagerFactoryBean em
                 = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource);
-        em.setPackagesToScan("com.htp");
+        em.setPackagesToScan("by.zabavskiy");
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);

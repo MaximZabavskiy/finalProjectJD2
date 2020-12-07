@@ -1,8 +1,12 @@
 package by.zabavskiy.daorepository.jdbc;
 
-import com.htp.dao.UserDao;
-import com.htp.domain.User;
-import com.htp.exceptions.ResourceNotFoundException;
+import by.zabavskiy.daorepository.UserDao;
+import by.zabavskiy.domain.User;
+import by.zabavskiy.domain.enums.FitnessLevel;
+import by.zabavskiy.domain.enums.Gender;
+import by.zabavskiy.domain.enums.GoalName;
+import by.zabavskiy.domain.enums.Status;
+import by.zabavskiy.exceptions.ResourceNotFoundException;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
@@ -21,15 +25,21 @@ public class UserDaoImpl implements UserDao {
     private static final Logger log = Logger.getLogger(UserDaoImpl.class);
 
     public static final String USER_ID = "id";
-    public static final String USER_USERNAME = "username";
+    public static final String USER_NAME = "name";
     public static final String USER_SURNAME = "surname";
-    public static final String USER_BIRTH_DATE = "birth_date";
-    public static final String USER_LOGIN = "login";
+    public static final String USER_USERNAME = "username";
     public static final String USER_PASSWORD = "password";
+    public static final String USER_EMAIL = "email";
+    public static final String USER_GENDER = "gender";
+    public static final String USER_BIRTH_DATE = "birth_date";
+    public static final String USER_HEIGHT = "height";
+    public static final String USER_WEIGHT = "weight";
+    public static final String USER_FITNESS_LEVEL = "fitnessLevel";
+    public static final String USER_GOAL = "goal";
     public static final String USER_CREATED = "created";
     public static final String USER_CHANGED = "changed";
+    public static final String USER_STATUS = "status";
     public static final String USER_IS_BLOCKED = "is_blocked";
-    public static final String USER_WEIGHT = "weight";
 
     private DataSource dataSource;
 
@@ -68,7 +78,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> search(String searchParam) {
-        final String findAllQueryForPrepared = "select * from m_users where id > ? order by id desc"; //:{имя параметра}    ?
+        final String findAllQueryForPrepared = "select * from m_users where id > ? order by id desc"; //:{the name of a parameter}    ?
 
         List<User> resultList = new ArrayList<>();
         /*2. DriverManager should get connection*/
@@ -135,23 +145,29 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User save(User user) {
 
-        final String insertQuery = "INSERT INTO m_users (username, surname, birth_date, login, password, created, changed, weight, is_blocked)\n" +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        final String insertQuery = "INSERT INTO m_users (name, surname, username, password, email, gender, birth_date, height, weight, fitnessLevel, goal, created, changed, status, is_blocked)\n"
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = dataSource.getConnection();
                 /*3. Get statement from connection*/
              PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
              PreparedStatement lastInsertId = connection.prepareStatement("SELECT currval('m_users_id_seq') as last_insert_id;");
         ) {
-            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getSurname());
-            preparedStatement.setDate(3, user.getBirthDate());
-            preparedStatement.setString(4, user.getLogin());
-            preparedStatement.setString(5, user.getPassword());
-            preparedStatement.setTimestamp(6, user.getCreated());
-            preparedStatement.setTimestamp(7, user.getChanged());
-            preparedStatement.setDouble(8, user.getWeight());
-            preparedStatement.setBoolean(9, user.isBlocked());
+            preparedStatement.setString(3, user.getUsername());
+            preparedStatement.setString(4, user.getPassword());
+            preparedStatement.setString(5, user.getEmail());
+            preparedStatement.setString(6, user.getGender().name());
+            preparedStatement.setDate(7, user.getBirthDate());
+            preparedStatement.setDouble(8, user.getHeight());
+            preparedStatement.setDouble(9, user.getWeight());
+            preparedStatement.setString(10, user.getFitnessLevel().name());
+            preparedStatement.setString(11, user.getGoalName().name());
+            preparedStatement.setTimestamp(12, user.getCreated());
+            preparedStatement.setTimestamp(13, user.getChanged());
+            preparedStatement.setString(14, user.getStatus().name());
+            preparedStatement.setBoolean(15, user.isBlocked());
 
             preparedStatement.executeUpdate();
 
@@ -167,25 +183,30 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User update(User user) {
-        final String updateQuery = "update m_users set username = ?, surname = ?, birth_date = ?, login = ?, password = ?, " +
-                "created = ?, changed = ?, weight = ?, is_blocked = ? " +
+        final String updateQuery = "update m_users set (name = ?, surname = ?, username = ?, password = ?, email = ?, gender = ?, birth_date = ?, height = ?, weight = ?, fitnessLevel = ?, goal = ?, created = ?, changed = ?, status = ?, is_blocked = ? " +
                 "where id = ?";
 
         try (Connection connection = dataSource.getConnection();
                 /*3. Get statement from connection*/
              PreparedStatement preparedStatement = connection.prepareStatement(updateQuery);
         ) {
-            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getSurname());
-            preparedStatement.setDate(3, user.getBirthDate());
-            preparedStatement.setString(4, user.getLogin());
-            preparedStatement.setString(5, user.getPassword());
-            preparedStatement.setTimestamp(6, user.getCreated());
-            preparedStatement.setTimestamp(7, user.getChanged());
-            preparedStatement.setDouble(8, user.getWeight());
-            preparedStatement.setBoolean(9, user.isBlocked());
+            preparedStatement.setString(3, user.getUsername());
+            preparedStatement.setString(4, user.getPassword());
+            preparedStatement.setString(5, user.getEmail());
+            preparedStatement.setString(6, user.getGender().name());
+            preparedStatement.setDate(7, user.getBirthDate());
+            preparedStatement.setDouble(8, user.getHeight());
+            preparedStatement.setDouble(9, user.getWeight());
+            preparedStatement.setString(10, user.getFitnessLevel().name());
+            preparedStatement.setString(11, user.getGoalName().name());
+            preparedStatement.setTimestamp(12, user.getCreated());
+            preparedStatement.setTimestamp(13, user.getChanged());
+            preparedStatement.setString(14, user.getStatus().name());
+            preparedStatement.setBoolean(15, user.isBlocked());
 
-            preparedStatement.setLong(10, user.getId());
+            preparedStatement.setLong(16, user.getId());
 
             preparedStatement.executeUpdate();
 
@@ -205,15 +226,21 @@ public class UserDaoImpl implements UserDao {
         User user = new User();
         /*5. Columns mapping*/
         user.setId(resultSet.getLong(USER_ID));
-        user.setUsername(resultSet.getString(USER_USERNAME));
+        user.setName(resultSet.getString(USER_NAME));
         user.setSurname(resultSet.getString(USER_SURNAME));
-        user.setBirthDate(resultSet.getDate(USER_BIRTH_DATE));
-        user.setLogin(resultSet.getString(USER_LOGIN));
+        user.setUsername(resultSet.getString(USER_USERNAME));
         user.setPassword(resultSet.getString(USER_PASSWORD));
+        user.setEmail(resultSet.getString(USER_EMAIL));
+        user.setGender(Gender.valueOf(resultSet.getString(USER_GENDER)));
+        user.setBirthDate(resultSet.getDate(USER_BIRTH_DATE));
+        user.setHeight(resultSet.getFloat(USER_HEIGHT));
+        user.setWeight(resultSet.getFloat(USER_WEIGHT));
+        user.setFitnessLevel(FitnessLevel.valueOf(resultSet.getString(USER_FITNESS_LEVEL)));
+        user.setGoalName(GoalName.valueOf(resultSet.getString(USER_GOAL)));
         user.setCreated(resultSet.getTimestamp(USER_CREATED));
         user.setChanged(resultSet.getTimestamp(USER_CHANGED));
+        user.setStatus(Status.valueOf(resultSet.getString(USER_STATUS)));
         user.setBlocked(resultSet.getBoolean(USER_IS_BLOCKED));
-        user.setWeight(resultSet.getFloat(USER_WEIGHT));
 
         return user;
     }

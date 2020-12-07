@@ -16,8 +16,8 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.sql.Timestamp;
-import java.util.Date;
 
 @Setter
 @Getter

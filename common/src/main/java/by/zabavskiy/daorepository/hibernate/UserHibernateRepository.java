@@ -1,9 +1,9 @@
 package by.zabavskiy.daorepository.hibernate;
 
-import com.htp.dao.HibernateUserDao;
-import com.htp.domain.Gender;
-import com.htp.domain.hibernate.HibernateUser;
-import com.htp.domain.hibernate.HibernateUser_;
+import by.zabavskiy.daorepository.HibernateUserDao;
+import by.zabavskiy.domain.enums.Gender;
+import by.zabavskiy.domain.hibernate.HibernateUser;
+import by.zabavskiy.domain.hibernate.HibernateUser_;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -71,11 +71,11 @@ public class UserHibernateRepository implements HibernateUserDao {
     /*List<List<Object>>*/
     @Override
     public List<Object> search(String searchParam) {
-        final String query = "select user.id as id, user.login as login, role.roleName as roleName from HibernateUser user " +
+        final String query = "select user.id as id, user.username as login, role.roleName as roleName from HibernateUser user " +
                 " inner join user.roles as role " +
                 " where role.roleName = 'ROLE_ADMIN' " +
                 " and user.gender = :gender " +
-                " and user.login like '%a%' " +
+                " and user.username like '%a%' " +
                 " and user.weight between 10 and 100 " +
                 " and user.gender not in ('MALE', 'FEMALE') " +
                 " order by user.id asc";

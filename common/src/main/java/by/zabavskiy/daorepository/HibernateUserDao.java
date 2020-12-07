@@ -1,6 +1,6 @@
 package by.zabavskiy.daorepository;
 
-import com.htp.domain.hibernate.HibernateUser;
+import by.zabavskiy.domain.hibernate.HibernateUser;
 
 import java.sql.SQLException;
 import java.util.List;

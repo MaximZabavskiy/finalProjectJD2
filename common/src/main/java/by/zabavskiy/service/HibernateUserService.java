@@ -1,7 +1,7 @@
 package by.zabavskiy.service;
 
-import com.htp.dao.HibernateUserDao;
-import com.htp.domain.hibernate.HibernateUser;
+import by.zabavskiy.daorepository.HibernateUserDao;
+import by.zabavskiy.domain.hibernate.HibernateUser;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
