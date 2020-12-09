@@ -1,8 +1,8 @@
 package by.zabavskiy.controller;
 
-import com.htp.controller.request.UserCreateRequest;
-import com.htp.domain.User;
-import com.htp.service.UserService;
+import by.zabavskiy.controller.request.UserCreateRequest;
+import by.zabavskiy.domain.User;
+import by.zabavskiy.service.UserService;
 import io.swagger.annotations.*;
 import org.apache.log4j.Logger;
 import org.springframework.http.HttpStatus;
@@ -10,8 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -72,14 +70,18 @@ public class UserController {
     public User create(@Valid @RequestBody UserCreateRequest createRequest) {
 
         User user = new User();
-        user.setUsername(createRequest.getUsername());
+        user.setName(createRequest.getName());
         user.setSurname(createRequest.getSurname());
-        user.setBirthDate(createRequest.getBirthDate());
-        user.setLogin(createRequest.getLogin());
+        user.setUsername(createRequest.getUsername());
         user.setPassword(createRequest.getPassword());
-        user.setCreated(new Timestamp(new Date().getTime()));
-        user.setChanged(new Timestamp(new Date().getTime()));
+        user.setEmail(createRequest.getEmail());
+        user.setGender(createRequest.getGender());
+        user.setBirthDate(createRequest.getBirthDate());
+        user.setHeight(createRequest.getHeight());
         user.setWeight(createRequest.getWeight());
+        user.setFitnessLevel(createRequest.getFitnessLevel());
+        user.setGoalName(createRequest.getGoalName());
+        user.setStatus(createRequest.getStatus());
 
         return userService.save(user);
     }

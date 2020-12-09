@@ -1,9 +1,9 @@
 package by.zabavskiy.controller;
 
-import com.htp.config.ProfilesTestCheckConfig;
-import com.htp.controller.request.UserCreateRequest;
-import com.htp.dao.springdata.UserRepository;
-import com.htp.domain.hibernate.HibernateUser;
+import by.zabavskiy.config.ProfilesTestCheckConfig;
+import by.zabavskiy.controller.request.UserCreateRequest;
+import by.zabavskiy.daorepository.springdata.UserRepository;
+import by.zabavskiy.domain.hibernate.HibernateUser;
 import io.swagger.annotations.*;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.data.domain.Page;

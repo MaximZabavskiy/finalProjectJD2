@@ -1,7 +1,7 @@
 package by.zabavskiy;
 
-import com.htp.config.ApplicationBeanConfiguration;
-import com.htp.config.SwaggerConfig;
+import by.zabavskiy.config.ApplicationBeanConfiguration;
+import by.zabavskiy.config.SwaggerConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
@@ -13,7 +13,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 @EnableTransactionManagement(proxyTargetClass = true)
-@SpringBootApplication(scanBasePackages = {"com.htp"})
+@SpringBootApplication(scanBasePackages = {"by.zabavskiy"})
 @EnableCaching
 @Import({
         ApplicationBeanConfiguration.class,

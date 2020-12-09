@@ -1,6 +1,7 @@
 package by.zabavskiy.service;
 
-import com.htp.domain.User;
+
+import by.zabavskiy.domain.User;
 
 import java.util.List;
 import java.util.Optional;

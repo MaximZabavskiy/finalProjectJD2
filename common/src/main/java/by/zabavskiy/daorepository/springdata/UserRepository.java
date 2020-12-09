@@ -1,7 +1,7 @@
 package by.zabavskiy.daorepository.springdata;
 
-import com.htp.domain.Gender;
-import com.htp.domain.hibernate.HibernateUser;
+import by.zabavskiy.domain.enums.Gender;
+import by.zabavskiy.domain.hibernate.HibernateUser;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -31,13 +31,13 @@ public interface UserRepository extends CrudRepository<HibernateUser, Long>, Jpa
     @Query(value = "select * from m_users inner join m_roles mr on m_users.id = mr.user_id where role_name = :role", nativeQuery = true)
     List<HibernateUser> findUsersWithAdminRolesWithParamsNative(@Param("role") String searchRole);
 
-    @Query("select u.login from HibernateUser u order by u.id")
+    @Query("select u.username from HibernateUser u order by u.id")
     List<String> findAllUserNames();
 
     @Query("select u.birthDate from HibernateUser u order by u.id")
     List<Date> findAllBirthDate();
 
-    @Query("select u.id, u.login, u.username, u.surname from HibernateUser u order by u.id")
+    @Query("select u.id, u.name, u.username, u.surname from HibernateUser u order by u.id")
     List<Object[]> findAllUserProfiles();
 
     //Not recommended

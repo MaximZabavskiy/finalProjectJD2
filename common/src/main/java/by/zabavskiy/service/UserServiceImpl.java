@@ -1,12 +1,13 @@
 package by.zabavskiy.service;
 
-import com.htp.dao.UserDao;
-import com.htp.domain.User;
+import by.zabavskiy.daorepository.UserDao;
+import by.zabavskiy.domain.User;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
 
 @Service
 public class UserServiceImpl implements UserService {
