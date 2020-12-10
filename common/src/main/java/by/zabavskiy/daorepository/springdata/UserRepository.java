@@ -19,7 +19,7 @@ public interface UserRepository extends CrudRepository<HibernateUser, Long>, Jpa
 
 
     /*select * from n_users where is_blocked is not true*/
-    List<HibernateUser> findByBlockedIsTrueAndGenderIsAndLoginEquals(Gender gender, String login);
+    List<HibernateUser> findByBlockedIsTrueAndGenderIsAndUsernameEquals(Gender gender, String username);
 
     @Cacheable
     @Query(value = "select u from HibernateUser u join u.roles role where role.roleName = 'ROLE_ADMIN' ")

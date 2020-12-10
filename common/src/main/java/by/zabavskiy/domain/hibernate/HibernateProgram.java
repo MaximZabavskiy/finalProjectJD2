@@ -12,19 +12,21 @@ import java.io.Serializable;
 import java.util.Collections;
 import java.util.Set;
 
+
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
 @EqualsAndHashCode(exclude = {
-        "workouts"
+        "user", "workouts", "calendar"
 })
 @ToString(exclude = {
-        "workouts"
+        "user", "workouts", "calendar"
 })
+@Entity
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+
 @Table(name = "m_programs")
 
 public class HibernateProgram implements Serializable {
@@ -33,7 +35,6 @@ public class HibernateProgram implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    private String userId;
     @Column
     @Enumerated(EnumType.STRING)
     private ProgramName name = ProgramName.NOT_SELECTED;

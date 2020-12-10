@@ -16,20 +16,18 @@ import java.util.Set;
 
 @Setter
 @Getter
-@RequiredArgsConstructor
+@NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(exclude = {
         "user", "program", "workout", "equipment"
 })
 @ToString(exclude = {
-       "user", "program", "workout", "equipment"
+        "user", "program", "workout", "equipment"
 })
 @Entity
-@Table(name = "m_calendar")
 @Cacheable
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-//@org.hibernate.annotations.NamedQuery(name = "HibernateUser_findAll",
-//        query = "select user from HibernateUser user order by user.id desc")
+@Table(name = "m_calendar")
 public class HibernateCalendar implements Serializable {
 
     @Id
@@ -64,3 +62,5 @@ public class HibernateCalendar implements Serializable {
     @ManyToMany(mappedBy = "calendar", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<HibernateEquipment> equipment = Collections.emptySet();
 }
+
+

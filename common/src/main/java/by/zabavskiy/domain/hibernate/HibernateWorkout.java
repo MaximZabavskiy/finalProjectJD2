@@ -10,8 +10,6 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.annotations.Generated;
-import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -23,27 +21,21 @@ import java.util.Set;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(exclude = {
-        "roles", "goods"
+        "user", "programs", "calendar"
 })
 @ToString(exclude = {
-        "roles", "goods"
+        "user", "programs", "calendar"
 })
 @Entity
 @Table(name = "m_workouts")
 @Cacheable
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@org.hibernate.annotations.NamedQuery(name = "HibernateUser_findAll",
-        query = "select user from HibernateUser user order by user.id desc")
+
 public class HibernateWorkout implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-
-//    private Long programId;
-//
-//    private Long userId;
 
     @Column
     @Enumerated(EnumType.STRING)

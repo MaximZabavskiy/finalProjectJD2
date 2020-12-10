@@ -22,10 +22,10 @@ import java.util.Set;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(exclude = {
-        "roles", "goods"
+        "roles", "programs", "workouts", "calendar","perfomance"
 })
 @ToString(exclude = {
-        "roles", "goods"
+        "roles", "programs", "workouts", "calendar","perfomance"
 })
 @Entity
 @Table(name = "m_users")
@@ -85,12 +85,6 @@ public class HibernateUser implements Serializable {
     @Column
     @Enumerated(EnumType.STRING)
     private GoalName goalName = GoalName.NOT_SELECTED;
-
-    @Column
-    private Timestamp created;
-
-    @Column
-    private Timestamp changed;
 
     @Column
     @Enumerated(EnumType.STRING)

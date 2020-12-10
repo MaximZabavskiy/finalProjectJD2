@@ -1,4 +1,8 @@
 spring:
+  profiles:
+    active: dev
+---
+spring:
   profiles: dev
   profiles.include: jpacommon
   datasource:
@@ -9,7 +13,7 @@ spring:
     hikari:
       maximum-pool-size: 10
   flyway:
-    enabled: true
+    enabled: false
     ignore-missing-migrations: true
     locations: classpath:/migration
     baseline-on-migrate: true
@@ -34,7 +38,7 @@ spring:
     hikari:
       maximum-pool-size: 10
   flyway:
-    enabled: true
+    enabled: false
     ignore-missing-migrations: true
     locations: classpath:/migration
     baseline-on-migrate: true
