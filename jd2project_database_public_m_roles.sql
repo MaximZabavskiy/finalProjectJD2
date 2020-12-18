@@ -1,0 +1,5 @@
+INSERT INTO public.m_roles (id, user_id, role_name, created, changed, is_blocked) VALUES (1, 1, 'ROLE_ADMIN', '2020-12-11 18:35:23.123000', '2020-12-11 18:36:23.123000', false);
+INSERT INTO public.m_roles (id, user_id, role_name, created, changed, is_blocked) VALUES (2, 2, 'ROLE_USER', '2020-12-11 18:35:23.123000', '2020-12-11 18:36:23.123000', false);
+INSERT INTO public.m_roles (id, user_id, role_name, created, changed, is_blocked) VALUES (3, 3, 'ROLE_MODERATOR', '2020-12-11 18:35:23.123000', '2020-12-11 18:36:23.123000', false);
+INSERT INTO public.m_roles (id, user_id, role_name, created, changed, is_blocked) VALUES (4, 4, 'ROLE_USER', '2020-12-11 18:35:23.123000', '2020-12-11 18:36:23.123000', false);
+INSERT INTO public.m_roles (id, user_id, role_name, created, changed, is_blocked) VALUES (5, 5, 'ROLE_USER', '2020-12-11 18:35:23.123000', '2020-12-11 18:36:23.123000', false);

@@ -1,0 +1,5 @@
+INSERT INTO public.m_perfomance (id, user_id, max_pullups, max_pushups, max_squats, max_dips, created, changed, is_blocked) VALUES (1, 1, 20, 70, 100, 40, '2020-12-11 18:35:23.123000', '2020-12-11 18:36:23.123000', false);
+INSERT INTO public.m_perfomance (id, user_id, max_pullups, max_pushups, max_squats, max_dips, created, changed, is_blocked) VALUES (2, 2, 10, 30, 80, 10, '2020-12-11 18:35:23.123000', '2020-12-11 18:36:23.123000', false);
+INSERT INTO public.m_perfomance (id, user_id, max_pullups, max_pushups, max_squats, max_dips, created, changed, is_blocked) VALUES (3, 3, 15, 25, 50, 15, '2020-12-11 18:35:23.123000', '2020-12-11 18:36:23.123000', false);
+INSERT INTO public.m_perfomance (id, user_id, max_pullups, max_pushups, max_squats, max_dips, created, changed, is_blocked) VALUES (4, 4, 8, 45, 60, 12, '2020-12-11 18:35:23.123000', '2020-12-11 18:36:23.123000', false);
+INSERT INTO public.m_perfomance (id, user_id, max_pullups, max_pushups, max_squats, max_dips, created, changed, is_blocked) VALUES (5, 5, 5, 20, 70, 18, '2020-12-11 18:35:23.123000', '2020-12-11 18:36:23.123000', false);

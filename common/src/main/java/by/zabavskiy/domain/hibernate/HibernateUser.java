@@ -52,8 +52,6 @@ public class HibernateUser implements Serializable {
     @Column
     private String password;
 
-    //What is it?!!!
-
     @Embedded
     @AttributeOverrides({
             @AttributeOverride(name = "created", column = @Column(name = "created")),

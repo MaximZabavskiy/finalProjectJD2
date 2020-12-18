@@ -1,0 +1,5 @@
+INSERT INTO public.l_calendar_equipment (id, calendar_id, equipment_id, created, changed, is_blocked) VALUES (1, 1, 1, '2020-12-11 18:35:23.123000', '2020-12-11 18:36:23.123000', false);
+INSERT INTO public.l_calendar_equipment (id, calendar_id, equipment_id, created, changed, is_blocked) VALUES (2, 2, 2, '2020-12-11 18:35:23.123000', '2020-12-11 18:36:23.123000', false);
+INSERT INTO public.l_calendar_equipment (id, calendar_id, equipment_id, created, changed, is_blocked) VALUES (3, 3, 3, '2020-12-11 18:35:23.123000', '2020-12-11 18:36:23.123000', false);
+INSERT INTO public.l_calendar_equipment (id, calendar_id, equipment_id, created, changed, is_blocked) VALUES (4, 4, 4, '2020-12-11 18:35:23.123000', '2020-12-11 18:36:23.123000', false);
+INSERT INTO public.l_calendar_equipment (id, calendar_id, equipment_id, created, changed, is_blocked) VALUES (5, 5, 5, '2020-12-11 18:35:23.123000', '2020-12-11 18:36:23.123000', false);

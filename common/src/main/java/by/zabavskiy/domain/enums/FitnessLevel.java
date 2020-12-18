@@ -11,5 +11,6 @@ public enum FitnessLevel {
     }
 
     FitnessLevel(String description) {
+
     }
 }

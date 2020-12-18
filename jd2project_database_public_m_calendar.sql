@@ -1,0 +1,5 @@
+INSERT INTO public.m_calendar (id, user_id, program_id, workout_id, equipment_id, date, created, changed, is_blocked) VALUES (1, 1, 1, 1, 1, '2021-01-09', '2020-12-11 18:35:23.123000', '2020-12-11 18:36:23.123000', false);
+INSERT INTO public.m_calendar (id, user_id, program_id, workout_id, equipment_id, date, created, changed, is_blocked) VALUES (2, 2, 2, 2, 2, '2021-01-10', '2020-12-11 18:35:23.123000', '2020-12-11 18:36:23.123000', false);
+INSERT INTO public.m_calendar (id, user_id, program_id, workout_id, equipment_id, date, created, changed, is_blocked) VALUES (3, 3, 3, 3, 3, '2021-01-11', '2020-12-11 18:35:23.123000', '2020-12-11 18:36:23.123000', false);
+INSERT INTO public.m_calendar (id, user_id, program_id, workout_id, equipment_id, date, created, changed, is_blocked) VALUES (4, 4, 4, 4, 4, '2021-01-12', '2020-12-11 18:35:23.123000', '2020-12-11 18:36:23.123000', false);
+INSERT INTO public.m_calendar (id, user_id, program_id, workout_id, equipment_id, date, created, changed, is_blocked) VALUES (5, 5, 5, 5, 5, '2021-01-13', '2020-12-11 18:35:23.123000', '2020-12-11 18:36:23.123000', false);

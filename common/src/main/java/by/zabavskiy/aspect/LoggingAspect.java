@@ -52,6 +52,7 @@ public class LoggingAspect {
         Object proceed = joinPoint.proceed();
         log.info("Method " + joinPoint.getSignature().getName() + " finished");
         return proceed;
+        
     }
 }
 

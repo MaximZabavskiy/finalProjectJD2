@@ -1,7 +1,7 @@
 package by.zabavskiy;
 
 import by.zabavskiy.config.ApplicationBeanConfiguration;
-import by.zabavskiy.config.SwaggerConfig;
+import by.zabavskiy.config.SwaggerConfigBean;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
@@ -18,7 +18,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Import({
         ApplicationBeanConfiguration.class,
         //DatasourceConfiguration.class,
-        SwaggerConfig.class
+        SwaggerConfigBean.class
 })
 public class SpringBootStarterApplication {
     public static void main(String[] args) {

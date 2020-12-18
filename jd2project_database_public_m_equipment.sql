@@ -1,0 +1,5 @@
+INSERT INTO public.m_equipment (id, clothes, shoes, beverage, cleansers, created, changed, is_blocked) VALUES (1, 'SHORTS', 'SNEAKERS', 'BCA', 'SHOWER_GEL', '2020-12-11 18:35:23.123000', '2020-12-11 18:36:23.123000', false);
+INSERT INTO public.m_equipment (id, clothes, shoes, beverage, cleansers, created, changed, is_blocked) VALUES (2, 'T_SHIRT_AND_TROUSERS', 'SLIPPERS', 'BCA', 'SHAMPOO', '2020-12-11 18:35:23.123000', '2020-12-11 18:36:23.123000', false);
+INSERT INTO public.m_equipment (id, clothes, shoes, beverage, cleansers, created, changed, is_blocked) VALUES (3, 'T_SHIRT_AND_TROUSERS', 'SNEAKERS', 'WATER', 'SHOWER_GEL', '2020-12-11 18:35:23.123000', '2020-12-11 18:36:23.123000', false);
+INSERT INTO public.m_equipment (id, clothes, shoes, beverage, cleansers, created, changed, is_blocked) VALUES (4, 'TROUSERS_AND_HOODIE', 'SLIPPERS', 'PROTEIN', 'SHAMPOO', '2020-12-11 18:35:23.123000', '2020-12-11 18:36:23.123000', false);
+INSERT INTO public.m_equipment (id, clothes, shoes, beverage, cleansers, created, changed, is_blocked) VALUES (5, 'T_SHIRT_AND_TROUSERS', 'SNEAKERS', 'WATER', 'SOAP', '2020-12-11 18:35:23.123000', '2020-12-11 18:36:23.123000', false);

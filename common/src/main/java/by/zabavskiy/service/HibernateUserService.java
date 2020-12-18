@@ -16,25 +16,16 @@ public class HibernateUserService implements HibUserService {
 
     private HibernateUserDao hibernateUserRepository;
 
-    //private HibernateUserService hibernateUserService;
-
     public HibernateUserService(HibernateUserDao hibernateUserRepository) {
         this.hibernateUserRepository = hibernateUserRepository;
     }
 
-//    @Autowired
-//    public void setHibernateUserService(HibernateUserService hibernateUserService) {
-//        this.hibernateUserService = hibernateUserService;
-//    }
-
     @Transactional(rollbackFor = Exception.class, isolation = Isolation.DEFAULT, propagation = Propagation.REQUIRED)
     public HibernateUser save(HibernateUser user) throws SQLException {
-        //hibernateUserService.findAll();
 
         return hibernateUserRepository.save(user);
     }
 
-    //@Transactional
     public List<HibernateUser> findAll() {
         return hibernateUserRepository.findAll();
     }
