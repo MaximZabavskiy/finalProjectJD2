@@ -1,39 +1,75 @@
 package by.zabavskiy.domain;
 
 import by.zabavskiy.domain.enums.*;
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import lombok.*;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import javax.persistence.*;
 import java.io.Serializable;
-import java.security.Timestamp;
+import java.sql.Timestamp;
+import java.util.Collections;
+import java.util.Set;
 
 @Setter
 @Getter
-@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-
-
+@EqualsAndHashCode(exclude = {
+        "calendar"
+})
+@ToString(exclude = {
+        "calendar"
+})
+@Entity
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Table(name = "m_equipment")
 public class Equipment implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column
+    @Enumerated(EnumType.STRING)
     private ClothesName clothes = ClothesName.NOT_SELECTED;
 
+    @Column
+    @Enumerated(EnumType.STRING)
     private ShoesName shoes = ShoesName.NOT_SELECTED;
 
+    @Column
+    @Enumerated(EnumType.STRING)
     private BeverageName beverage = BeverageName.NOT_SELECTED;
 
-    private CleansersName cleansers = CleansersName.NOT_SELECTED;
+    @Column
+    @Enumerated(EnumType.STRING)
+    private CleanserName cleanser = CleanserName.NOT_SELECTED;
 
-    private Status status = Status.CREATED;
+    @Column
+    private Timestamp created;
 
-    @Override
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
-    }
+    @Column
+    private Timestamp changed;
+
+    @Column(name = "is_blocked")
+    private boolean blocked;
+
+
+
+    @JsonIgnoreProperties("programs")
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(
+            name = "l_calendar_equipment",
+            joinColumns = {@JoinColumn(name = "calendar_id")},
+            inverseJoinColumns = {@JoinColumn(name = "equipment_id")}
+    )
+    private Set<Calendar> calendar = Collections.emptySet();
 }

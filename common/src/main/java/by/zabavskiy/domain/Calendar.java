@@ -1,41 +1,69 @@
 package by.zabavskiy.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import by.zabavskiy.domain.enums.Status;
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import lombok.*;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
-
+import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Timestamp;
+import java.util.Collections;
 import java.util.Date;
+import java.util.Set;
 
-@Setter
-@Getter
-@EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
-@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 
+
+@Data
+@Entity
+@EqualsAndHashCode(exclude = {
+        "user", "program", "workout", "equipment"
+})
+@Table(name = "m_calendar")
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Cacheable
 public class Calendar implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long userId;
-
-    private Long programId;
-
-    private Long workoutId;
-
-    private Long equipmentId;
-
+    @Column
+    @Temporal(TemporalType.DATE)
     private Date date;
 
-    private Status status = Status.CREATED;
+    @Column
+    private Timestamp created;
 
-    @Override
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
-    }
+    @Column
+    private Timestamp changed;
+
+    @Column(name = "is_blocked")
+    private boolean blocked;
+
+
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    @JsonBackReference
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "program_id", nullable = false)
+    @JsonBackReference
+    private Program program;
+
+    @ManyToOne
+    @JoinColumn(name = "workout_id", nullable = false)
+    @JsonBackReference
+    private Workout workout;
+
+    @JsonIgnoreProperties("calendar")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @ManyToMany(mappedBy = "calendar", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Equipment> equipment = Collections.emptySet();
 }
+
+

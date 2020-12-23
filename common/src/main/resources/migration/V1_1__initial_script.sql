@@ -1,11 +1,11 @@
 create table m_users
 (
-    id bigint default nextval('m_users_id_seq'::regclass) not null
+    id  bigserial not null
         constraint m_users_pkey
             primary key,
     name varchar(100) not null,
     surname varchar(100) not null,
-    username varchar(100) not null,
+    login varchar(100) not null,
     password varchar(100) not null,
     email varchar(100) not null,
     gender varchar(20) default 'NOT_SELECTED'::character varying not null,
@@ -48,7 +48,7 @@ create table m_equipment
     clothes varchar(20) default 'NOT_SELECTED'::character varying not null,
     shoes varchar(20) default 'NOT_SELECTED'::character varying not null,
     beverage varchar(20) default 'NOT_SELECTED'::character varying not null,
-    cleansers varchar(20) default 'NOT_SELECTED'::character varying not null,
+    cleanser varchar(20) default 'NOT_SELECTED'::character varying not null,
     created timestamp(6) default CURRENT_TIMESTAMP not null,
     changed timestamp(6) default CURRENT_TIMESTAMP not null,
     is_blocked boolean default false not null
@@ -68,7 +68,7 @@ create table m_workouts
         constraint m_workouts_m_users_id_fk
             references m_users,
     muscle_group varchar(20) default 'NOT_SELECTED'::character varying not null,
-    exercises varchar(20) default 'NOT_SELECTED'::character varying not null,
+    exercise varchar(20) default 'NOT_SELECTED'::character varying not null,
     rounds bigint default 0 not null,
     reps bigint default 0 not null,
     created timestamp(6) default CURRENT_TIMESTAMP not null,

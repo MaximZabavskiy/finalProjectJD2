@@ -3,68 +3,103 @@ package by.zabavskiy.domain;
 import by.zabavskiy.domain.enums.FitnessLevel;
 import by.zabavskiy.domain.enums.Gender;
 import by.zabavskiy.domain.enums.GoalName;
-import by.zabavskiy.domain.enums.Status;
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.*;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.Collections;
+import java.util.Date;
+import java.util.Set;
 
-@Setter
-@Getter
-@EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
-@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-
+@Data
+@Entity
+@EqualsAndHashCode(exclude = {
+        "roles", "programs", "workouts", "calendar","perfomance"
+})
+@Table(name = "m_users")
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Cacheable
 
 public class User implements Serializable {
-    /*Here we will store PK of m_users table*/
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column
     private String name;
 
+    @Column
     private String surname;
 
-    private String username;
+    @Column
+    private String login;
 
-    @JsonIgnore
+    @Column
     private String password;
 
+    @Column
     private String email;
 
+    @Column
+    @Enumerated(EnumType.STRING)
     private Gender gender = Gender.NOT_SELECTED;
 
+    @Column(name = "birth_date")
+    @Temporal(TemporalType.DATE)
     private Date birthDate;
 
+    @Column
     private Float height;
 
+    @Column
     private Float weight;
 
+    @Column
+    @Enumerated(EnumType.STRING)
     private FitnessLevel fitnessLevel = FitnessLevel.NOT_SELECTED;
 
+    @Column
+    @Enumerated(EnumType.STRING)
     private GoalName goalName = GoalName.NOT_SELECTED;
 
+    @Column
     private Timestamp created;
 
+    @Column
     private Timestamp changed;
 
-    private Status status = Status.CREATED;
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "blocked", column = @Column(name = "is_blocked")),
+    })
+    private CurrentStatus currentStatus;
 
-    private boolean isBlocked;
 
-    @Override
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
-    }
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @JsonManagedReference
+    private Role role;
+
+    @JsonManagedReference
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Program> programs = Collections.emptySet();
+
+    @JsonManagedReference
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Workout> workouts = Collections.emptySet();
+
+    @JsonManagedReference
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Calendar> calendar = Collections.emptySet();
+
+    @OneToOne(mappedBy = "user")
+    private Perfomance perfomance;
+
 }

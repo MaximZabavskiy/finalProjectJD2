@@ -1,41 +1,51 @@
 package by.zabavskiy.domain;
 
-import by.zabavskiy.domain.enums.Exercise;
-import by.zabavskiy.domain.enums.MuscleGroup;
-import by.zabavskiy.domain.enums.Status;
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import lombok.*;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Timestamp;
 
-@Setter
-@Getter
-@EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
-@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 
+@Data
+@Entity
+@EqualsAndHashCode(exclude = {
+        "user"
+})
+@Table(name = "m_perfomance")
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Cacheable
 public class Perfomance implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long userId;
-
+    @Column
     private Long maxPullups;
 
+    @Column
     private Long maxPushups;
 
+    @Column
     private Long maxSquats;
 
+    @Column
     private Long maxDips;
 
-    private Status status = Status.CREATED;
+    @Column
+    private Timestamp created;
 
-    @Override
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
-    }
+    @Column
+    private Timestamp changed;
+
+    @Column(name = "is_blocked")
+    private boolean blocked;
+
+
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
 }
