@@ -5,7 +5,10 @@ import by.zabavskiy.domain.User;
 import by.zabavskiy.domain.enums.SystemRoles;
 import by.zabavskiy.repository.UserRepository;
 import by.zabavskiy.repository.RoleRepository;
+import by.zabavskiy.repository.impl.RoleSpringDataRepository;
 import by.zabavskiy.repository.impl.UserSpringDataRepository;
+import by.zabavskiy.service.RoleService;
+import by.zabavskiy.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,23 +24,22 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class UserServiceProvider implements UserDetailsService {
 
-    private final UserRepository userRepository;
 
-    private final RoleRepository roleRepository;
+    private final RoleService roleService;
 
-    private final UserSpringDataRepository userSpringDataRepository;
+    private final UserService userService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         try {
-            Optional<User> searchResult = userSpringDataRepository.findByLogin(username);
+            Optional<User> searchResult = userService.findByLogin(username); //надо переделать через service
             if (searchResult.isPresent()) {
                 User user = searchResult.get();
                 return new org.springframework.security.core.userdetails.User(
                         user.getLogin(),
                         user.getPassword(),
 //                        ["ROLE_USER", "ROLE_ADMIN"]
-                        AuthorityUtils.commaSeparatedStringToAuthorityList(roleRepository.findUserRoles(user.getId()).stream().map(Role::getRoleName).map(SystemRoles::name).collect(Collectors.joining(",")))
+                        AuthorityUtils.commaSeparatedStringToAuthorityList(roleService.findUserRoles(user.getId()).stream().map(Role::getRoleName).map(SystemRoles::name).collect(Collectors.joining(",")))
                 );
             } else {
                 throw new UsernameNotFoundException(String.format("No user found with login '%s'.", username));

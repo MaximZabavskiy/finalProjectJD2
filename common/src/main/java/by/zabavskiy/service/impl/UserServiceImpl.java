@@ -1,24 +1,12 @@
 package by.zabavskiy.service.impl;
 
 import by.zabavskiy.domain.User;
-import by.zabavskiy.domain.enums.Gender;
 import by.zabavskiy.repository.UserRepository;
 import by.zabavskiy.repository.impl.UserSpringDataRepository;
 import by.zabavskiy.service.UserService;
-import org.hibernate.Session;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Isolation;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PathVariable;
-import springfox.documentation.annotations.ApiIgnore;
 
 import java.sql.Date;
-import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;

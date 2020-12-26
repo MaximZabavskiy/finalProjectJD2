@@ -4,7 +4,8 @@ import by.zabavskiy.domain.enums.FitnessLevel;
 import by.zabavskiy.domain.enums.Gender;
 import by.zabavskiy.domain.enums.GoalName;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
