@@ -30,7 +30,6 @@ public class Role implements Serializable {
     public Role(Long id, SystemRoles roleName, Boolean blocked) {
         this.id = id;
         this.roleName = roleName;
-        this.blocked = blocked;
     }
 
     public Role(SystemRoles roleName, User user) {
@@ -54,8 +53,11 @@ public class Role implements Serializable {
     @Column
     private Timestamp changed;
 
-    @Column(name = "is_blocked")
-    private Boolean blocked;
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "blocked", column = @Column(name = "is_blocked")),
+    })
+    private CurrentStatus currentStatus;
 
 
 

@@ -2,7 +2,7 @@ package by.zabavskiy.domain;
 
 import by.zabavskiy.domain.enums.FitnessLevel;
 import by.zabavskiy.domain.enums.Gender;
-import by.zabavskiy.domain.enums.GoalName;
+import by.zabavskiy.domain.enums.Goal;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -60,13 +60,13 @@ public class User implements Serializable {
     @Column
     private Float weight;
 
-    @Column
+    @Column(name = "fitness_level")
     @Enumerated(EnumType.STRING)
     private FitnessLevel fitnessLevel = FitnessLevel.NOT_SELECTED;
 
     @Column
     @Enumerated(EnumType.STRING)
-    private GoalName goalName = GoalName.NOT_SELECTED;
+    private Goal goal = Goal.NOT_SELECTED;
 
     @Column
     private Timestamp created;

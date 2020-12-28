@@ -22,16 +22,16 @@ public class Perfomance implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(name = "max_pullups")
     private Long maxPullups;
 
-    @Column
+    @Column(name = "max_pushups")
     private Long maxPushups;
 
-    @Column
+    @Column(name = "max_squats")
     private Long maxSquats;
 
-    @Column
+    @Column(name = "max_dips")
     private Long maxDips;
 
     @Column
@@ -40,8 +40,11 @@ public class Perfomance implements Serializable {
     @Column
     private Timestamp changed;
 
-    @Column(name = "is_blocked")
-    private boolean blocked;
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "blocked", column = @Column(name = "is_blocked")),
+    })
+    private CurrentStatus currentStatus;
 
 
 

@@ -20,7 +20,7 @@ public abstract class UserRequestConverter<S, T> extends EntityConverter<S, T> {
         user.setHeight(request.getHeight());
         user.setWeight(request.getWeight());
         user.setFitnessLevel(request.getFitnessLevel());
-        user.setGoalName(request.getGoalName());
+        user.setGoal(request.getGoal());
         user.setCurrentStatus(new CurrentStatus(request.getIsBlocked()));
 
 

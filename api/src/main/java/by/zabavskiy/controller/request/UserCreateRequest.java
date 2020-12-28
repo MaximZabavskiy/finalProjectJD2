@@ -2,7 +2,7 @@ package by.zabavskiy.controller.request;
 
 import by.zabavskiy.domain.enums.FitnessLevel;
 import by.zabavskiy.domain.enums.Gender;
-import by.zabavskiy.domain.enums.GoalName;
+import by.zabavskiy.domain.enums.Goal;
 import lombok.Data;
 
 import java.sql.Date;
@@ -30,7 +30,7 @@ public class UserCreateRequest {
 
     private FitnessLevel fitnessLevel = FitnessLevel.NOT_SELECTED;
 
-    private GoalName goalName = GoalName.NOT_SELECTED;
+    private Goal goal = Goal.NOT_SELECTED;
 
     private Boolean isBlocked;
 

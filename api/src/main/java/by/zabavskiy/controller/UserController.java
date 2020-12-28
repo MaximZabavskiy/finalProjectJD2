@@ -53,7 +53,7 @@ public class UserController {
         user.setHeight(userCreateRequest.getHeight());
         user.setWeight(userCreateRequest.getWeight());
         user.setFitnessLevel(userCreateRequest.getFitnessLevel());
-        user.setGoalName(userCreateRequest.getGoalName());
+        user.setGoal(userCreateRequest.getGoal());
         user.setCreated(new Timestamp(System.currentTimeMillis()));
         user.setChanged(new Timestamp(System.currentTimeMillis()));
         user.setCurrentStatus(new CurrentStatus(userCreateRequest.getIsBlocked()));
@@ -85,7 +85,7 @@ public class UserController {
         user.setHeight(userCreateRequest.getHeight());
         user.setWeight(userCreateRequest.getWeight());
         user.setFitnessLevel(userCreateRequest.getFitnessLevel());
-        user.setGoalName(userCreateRequest.getGoalName());
+        user.setGoal(userCreateRequest.getGoal());
         user.setCreated(new Timestamp(System.currentTimeMillis()));
         user.setChanged(new Timestamp(System.currentTimeMillis()));
         user.setCurrentStatus(new CurrentStatus(userCreateRequest.getIsBlocked()));
@@ -110,7 +110,7 @@ public class UserController {
         user.setHeight(userChangeRequest.getHeight());
         user.setWeight(userChangeRequest.getWeight());
         user.setFitnessLevel(userChangeRequest.getFitnessLevel());
-        user.setGoalName(userChangeRequest.getGoalName());
+        user.setGoal(userChangeRequest.getGoal());
         user.setCreated(new Timestamp(System.currentTimeMillis()));
         user.setChanged(new Timestamp(System.currentTimeMillis()));
         user.setCurrentStatus(new CurrentStatus(userChangeRequest.getIsBlocked()));

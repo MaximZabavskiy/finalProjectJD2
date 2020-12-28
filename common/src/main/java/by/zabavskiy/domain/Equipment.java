@@ -59,8 +59,11 @@ public class Equipment implements Serializable {
     @Column
     private Timestamp changed;
 
-    @Column(name = "is_blocked")
-    private boolean blocked;
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "blocked", column = @Column(name = "is_blocked")),
+    })
+    private CurrentStatus currentStatus;
 
 
 

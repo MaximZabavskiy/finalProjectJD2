@@ -30,7 +30,7 @@ public class Workout implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(name = "muscle_group")
     @Enumerated(EnumType.STRING)
     private MuscleGroup muscleGroup = MuscleGroup.NOT_SELECTED;
 
@@ -50,8 +50,11 @@ public class Workout implements Serializable {
     @Column
     private Timestamp changed;
 
-    @Column(name = "is_blocked")
-    private boolean blocked;
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "blocked", column = @Column(name = "is_blocked")),
+    })
+    private CurrentStatus currentStatus;
 
 
 
