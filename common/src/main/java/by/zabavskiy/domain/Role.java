@@ -13,6 +13,7 @@ import java.sql.Timestamp;
 @Getter
 @Setter
 @Data
+@AllArgsConstructor
 @Entity
 @EqualsAndHashCode(exclude = {
         "user"
@@ -20,6 +21,7 @@ import java.sql.Timestamp;
 @Table(name = "m_roles")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Cacheable
+@Builder
 public class Role implements Serializable {
 
     public Role() {
