@@ -39,7 +39,7 @@ public class ApplicationBeans {
                 .select()
                 .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.any())
-//                .paths(PathSelectors.ant("/**/programs/**")) --- Used with out server
+//                .paths(PathSelectors.ant("/**/programs/**")) --- Used with out server - not need
 //                .paths(PathSelectors.ant("/**/users/**"))
                 .build();
     }

@@ -28,8 +28,6 @@ public class RegistrationController {
 
     private final UserSpringDataRepository userSpringDataRepository;
 
-
-
     private final PasswordEncoder passwordEncoder;
 
     @ApiOperation(value = "Endpoint for registration users by 6 params")
@@ -41,7 +39,7 @@ public class RegistrationController {
         user.setName(userCreateRequest.getName());
         user.setSurname(userCreateRequest.getSurname());
         user.setLogin(userCreateRequest.getLogin());
-        user.setPassword(userCreateRequest.getPassword());
+        user.setPassword(passwordEncoder.encode(userCreateRequest.getPassword()));
         user.setEmail(userCreateRequest.getEmail());
         user.setGender(userCreateRequest.getGender());
         user.setBirthDate(userCreateRequest.getBirthDate());
