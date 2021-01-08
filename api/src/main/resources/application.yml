@@ -3,6 +3,9 @@ spring:
     active: dev
 ---
 spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB
   jpa:
     properties:
       javax.persistence.validation.mode: none
@@ -42,9 +45,13 @@ server:
 
 amazon:
   images:
-    s3: 123123213
-    token: someToken
-    password: password
+    s3: finalprojectjd2maximzabavskiy
+    accessKeyId: AKIAINQWSUAH5APHUMAQ
+    secretKey: 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
+    bucket: finalprojectjd2maximzabavskiy
+    serverUrl: "https://finalprojectjd2maximzabavskiy.s3.eu-central-1.amazonaws.com"
+    userFolder: users
+    region: eu-central-1
 
 ---
 

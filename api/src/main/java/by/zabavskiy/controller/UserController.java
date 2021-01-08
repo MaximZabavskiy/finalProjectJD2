@@ -11,6 +11,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.convert.ConversionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +26,8 @@ import java.util.List;
 public class UserController {
 
     public final UserService userService;
+
+    public final ConversionService conversionService;
 
     @GetMapping
     public ResponseEntity<List<User>> findAllUsers() {
@@ -41,25 +44,8 @@ public class UserController {
     @ResponseStatus(HttpStatus.CREATED)
     public User createUser(@RequestBody UserCreateRequest userCreateRequest) {
 
-        User user = new User();
+        User user = conversionService.convert(userCreateRequest, User.class);
 
-        user.setName(userCreateRequest.getName());
-        user.setSurname(userCreateRequest.getSurname());
-        user.setLogin(userCreateRequest.getLogin());
-        user.setPassword(userCreateRequest.getPassword());
-        user.setEmail(userCreateRequest.getEmail());
-        user.setGender(userCreateRequest.getGender());
-        user.setBirthDate(userCreateRequest.getBirthDate());
-        user.setHeight(userCreateRequest.getHeight());
-        user.setWeight(userCreateRequest.getWeight());
-        user.setFitnessLevel(userCreateRequest.getFitnessLevel());
-        user.setGoal(userCreateRequest.getGoal());
-        user.setCreated(new Timestamp(System.currentTimeMillis()));
-        user.setChanged(new Timestamp(System.currentTimeMillis()));
-        user.setCurrentStatus(new CurrentStatus(userCreateRequest.getIsBlocked()));
-
-
-        user.setRole(new Role(SystemRoles.ROLE_ADMIN, user));
         return userService.save(user);
     }
 
@@ -71,26 +57,10 @@ public class UserController {
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public User updateUser(@PathVariable Long id,
-                           @RequestBody UserCreateRequest userCreateRequest) {
+                           @RequestBody UserChangeRequest userChangeRequest) {
 
-        User user = userService.findById(id);
+        User user = conversionService.convert(userChangeRequest, User.class);
 
-        user.setName(userCreateRequest.getName());
-        user.setSurname(userCreateRequest.getSurname());
-        user.setLogin(userCreateRequest.getLogin());
-        user.setPassword(userCreateRequest.getPassword());
-        user.setEmail(userCreateRequest.getEmail());
-        user.setGender(userCreateRequest.getGender());
-        user.setBirthDate(userCreateRequest.getBirthDate());
-        user.setHeight(userCreateRequest.getHeight());
-        user.setWeight(userCreateRequest.getWeight());
-        user.setFitnessLevel(userCreateRequest.getFitnessLevel());
-        user.setGoal(userCreateRequest.getGoal());
-        user.setCreated(new Timestamp(System.currentTimeMillis()));
-        user.setChanged(new Timestamp(System.currentTimeMillis()));
-        user.setCurrentStatus(new CurrentStatus(userCreateRequest.getIsBlocked()));
-
-        user.setRole(new Role(SystemRoles.ROLE_ADMIN, user));
         return userService.update(user);
     }
 
@@ -98,22 +68,7 @@ public class UserController {
     @ResponseStatus(HttpStatus.OK)
     public User updateUser(@RequestBody UserChangeRequest userChangeRequest) {
 
-        User user = userService.findById(userChangeRequest.getId());
-
-        user.setName(userChangeRequest.getName());
-        user.setSurname(userChangeRequest.getSurname());
-        user.setLogin(userChangeRequest.getLogin());
-        user.setPassword(userChangeRequest.getPassword());
-        user.setEmail(userChangeRequest.getEmail());
-        user.setGender(userChangeRequest.getGender());
-        user.setBirthDate(userChangeRequest.getBirthDate());
-        user.setHeight(userChangeRequest.getHeight());
-        user.setWeight(userChangeRequest.getWeight());
-        user.setFitnessLevel(userChangeRequest.getFitnessLevel());
-        user.setGoal(userChangeRequest.getGoal());
-        user.setCreated(new Timestamp(System.currentTimeMillis()));
-        user.setChanged(new Timestamp(System.currentTimeMillis()));
-        user.setCurrentStatus(new CurrentStatus(userChangeRequest.getIsBlocked()));
+        User user = conversionService.convert(userChangeRequest, User.class);
 
         return userService.update(user);
     }

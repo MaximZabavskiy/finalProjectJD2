@@ -60,6 +60,9 @@ public class User implements Serializable {
     @Column
     private Float weight;
 
+    @Column(name = "photo_link")
+    private String photoLink;
+
     @Column(name = "fitness_level")
     @Enumerated(EnumType.STRING)
     private FitnessLevel fitnessLevel = FitnessLevel.NOT_SELECTED;
