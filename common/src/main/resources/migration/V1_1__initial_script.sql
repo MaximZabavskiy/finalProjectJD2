@@ -14,6 +14,11 @@ create table m_users
     weight double precision default 65 not null,
     fitness_level varchar(20) default 'NOT_SELECTED'::character varying not null,
     goal varchar(20) default 'NOT_SELECTED'::character varying not null,
+    max_pullups bigint default 0 not null,
+    max_pushups bigint default 0 not null,
+    max_squats bigint default 0 not null,
+    max_dips bigint default 0 not null,
+    photo_link varchar(200),
     created timestamp(6) default CURRENT_TIMESTAMP not null,
     changed timestamp(6) default CURRENT_TIMESTAMP not null,
     is_blocked boolean default false not null
@@ -77,25 +82,6 @@ create table m_workouts
 );
 
 alter table m_workouts owner to maxim;
-
-create table m_perfomance
-(
-    id bigserial not null
-        constraint m_perfomance_pk
-            primary key,
-    user_id bigint not null
-        constraint m_perfomance_m_users_id_fk
-            references m_users,
-    max_pullups bigint default 0 not null,
-    max_pushups bigint default 0 not null,
-    max_squats bigint default 0 not null,
-    max_dips bigint default 0 not null,
-    created timestamp(6) default CURRENT_TIMESTAMP not null,
-    changed timestamp(6) default CURRENT_TIMESTAMP not null,
-    is_blocked boolean default false not null
-);
-
-alter table m_perfomance owner to maxim;
 
 create table m_calendar
 (
@@ -182,3 +168,5 @@ alter table l_programs_workouts owner to maxim;
 create index l_programs_workouts_created_index
     on l_programs_workouts (created desc);
 
+create unique index m_users_login_uindex
+    on m_users (login);

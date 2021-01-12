@@ -18,6 +18,32 @@ public class ProgramServiceImpl implements ProgramService {
 
     @Override
     public List<Program> findAll() {
+        return programSpringDataRepository.findAllPrograms();
+    }
+
+    @Override
+    public List<Program> findAllWithCache() {
         return programSpringDataRepository.findAllWithCache();
     }
+
+    @Override
+    public Program findById(Long programId) {
+        return programSpringDataRepository.findProgramById(programId);
+    }
+
+    @Override
+    public Program save(Program program) {
+        return programSpringDataRepository.save(program);
+    }
+
+    @Override
+    public Program update(Program program) {
+        return programSpringDataRepository.save(program);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        programSpringDataRepository.deleteProgramById(id);
+    }
+
 }

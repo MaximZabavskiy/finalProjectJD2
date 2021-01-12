@@ -46,8 +46,8 @@ server:
 amazon:
   images:
     s3: finalprojectjd2maximzabavskiy
-    accessKeyId: AKIAINQWSUAH5APHUMAQ
-    secretKey: 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
+    accessKeyId: need
+    secretKey: need
     bucket: finalprojectjd2maximzabavskiy
     serverUrl: "https://finalprojectjd2maximzabavskiy.s3.eu-central-1.amazonaws.com"
     userFolder: users
@@ -57,7 +57,7 @@ amazon:
 
 jwtconfig:
   secret: secret
-  expiration: 60000
+  expiration: 600000
 
 ---
 spring:

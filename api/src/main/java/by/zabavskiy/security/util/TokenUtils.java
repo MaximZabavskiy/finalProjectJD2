@@ -90,12 +90,14 @@ public class TokenUtils {
                 .collect(Collectors.toList());
     }
 
+    //for authorization (not implemented)
     public Boolean canTokenBeRefreshed(String token, Date lastPasswordReset) {
         final Date created = this.getCreatedDateFromToken(token);
         return !(this.isCreatedBeforeLastPasswordReset(created, lastPasswordReset))
                 && !(this.isTokenExpired(token));
     }
 
+    //for authorization (not implemented)
     public String refreshToken(String token) {
         String refreshedToken;
         try {
@@ -108,6 +110,7 @@ public class TokenUtils {
         return refreshedToken;
     }
 
+    //for authorization (not implemented)
     public Boolean validateToken(String token, UserDetails userDetails) {
         final String username = getUsernameFromToken(token);
         return username.equals(userDetails.getUsername());

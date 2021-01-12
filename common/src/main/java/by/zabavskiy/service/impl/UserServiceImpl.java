@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> findAll() {
-        return userSpringDataRepository.findAll();
+        return userSpringDataRepository.findAllUsers();
     }
 
     @Override
@@ -35,12 +35,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User search(String gender, String firstName, String surname, String login, Long id, Date birthDate, Timestamp created, Timestamp changed) {
-        return userSpringDataRepository.search(gender, firstName, surname, login, id, birthDate, created, changed);
+        return userSpringDataRepository.searchWithFunctionCall(gender, firstName, surname, login, id, birthDate, created, changed);
     }
 
     @Override
     public User update(User user) {
-        return userRepository.update(user);
+        return userSpringDataRepository.save(user);
     }
 
     @Override
@@ -49,14 +49,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void delete(User user) {
-        userSpringDataRepository.delete(user);
+    public User findById(Long userId) {
+        return userSpringDataRepository.findUserById(userId);
     }
 
-    @Override
-    public User findById(Long userId) {
-        return userRepository.findById(userId);
-    }
+
     @Override
     public Optional<User> findByLogin(String login) {
         return userSpringDataRepository.findByLogin(login);

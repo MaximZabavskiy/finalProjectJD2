@@ -3,7 +3,6 @@ package by.zabavskiy;
 import by.zabavskiy.config.AmazonConfig;
 import by.zabavskiy.config.ApplicationBeans;
 import by.zabavskiy.config.PersistenceContextBeansConfiguration;
-import by.zabavskiy.config.WebBeansConfig;
 import by.zabavskiy.security.configuration.JwtTokenConfig;
 import by.zabavskiy.security.configuration.WebSecurityConfiguration;
 import org.springframework.boot.SpringApplication;
@@ -22,7 +21,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
         JwtTokenConfig.class,
         AmazonConfig.class,
         ApplicationBeans.class,
-        WebBeansConfig.class,
         PersistenceContextBeansConfiguration.class})
 public class SpringBootApplicationStarter {
 

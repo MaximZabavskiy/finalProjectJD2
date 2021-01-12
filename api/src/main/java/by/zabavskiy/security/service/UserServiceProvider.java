@@ -3,10 +3,6 @@ package by.zabavskiy.security.service;
 import by.zabavskiy.domain.Role;
 import by.zabavskiy.domain.User;
 import by.zabavskiy.domain.enums.SystemRoles;
-import by.zabavskiy.repository.UserRepository;
-import by.zabavskiy.repository.RoleRepository;
-import by.zabavskiy.repository.impl.RoleSpringDataRepository;
-import by.zabavskiy.repository.impl.UserSpringDataRepository;
 import by.zabavskiy.service.RoleService;
 import by.zabavskiy.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -24,21 +20,20 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class UserServiceProvider implements UserDetailsService {
 
-
     private final RoleService roleService;
 
     private final UserService userService;
 
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         try {
-            Optional<User> searchResult = userService.findByLogin(username); //надо переделать через service
+            Optional<User> searchResult = userService.findByLogin(username); //переделано через service
             if (searchResult.isPresent()) {
                 User user = searchResult.get();
                 return new org.springframework.security.core.userdetails.User(
                         user.getLogin(),
                         user.getPassword(),
-//                        ["ROLE_USER", "ROLE_ADMIN"]
                         AuthorityUtils.commaSeparatedStringToAuthorityList(roleService.findUserRoles(user.getId()).stream().map(Role::getRoleName).map(SystemRoles::name).collect(Collectors.joining(",")))
                 );
             } else {

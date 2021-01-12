@@ -19,19 +19,21 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class UserPhotoController {
 
-    private final UserSpringDataRepository userRepository;
+    //access to Repository without service layer
+    private final UserSpringDataRepository userSpringDataRepository;
+
     private final AmazonUploadFileService amazonUploadFileService;
 
     @PostMapping("/{id}")
     public ResponseEntity<Map<Object, Object>> uploadUserPhoto(@PathVariable Long id,
                                                                @RequestBody MultipartFile file) throws IOException {
 
-        User user = userRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+        User user = userSpringDataRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         byte[] imageBytes = file.getBytes();
         String imageLink = amazonUploadFileService.uploadFile(imageBytes, id);
 
         user.setPhotoLink(imageLink);
-        userRepository.save(user);
+        userSpringDataRepository.save(user);
 
         return new ResponseEntity<>(Collections.singletonMap("imageLink", imageLink), HttpStatus.CREATED);
     }

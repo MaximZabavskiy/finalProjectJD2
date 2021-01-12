@@ -1,21 +1,25 @@
 package by.zabavskiy.controller.convert;
 
 import by.zabavskiy.controller.request.UserCreateRequest;
-import by.zabavskiy.domain.CurrentStatus;
 import by.zabavskiy.domain.User;
+import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.sql.Timestamp;
 import java.util.Date;
 
-public abstract class EntityConverter<S, T> implements Converter<S, T> {
+@RequiredArgsConstructor
+public abstract class UserEntityConverter<S, T> implements Converter<S, T> {
+
+    protected final PasswordEncoder passwordEncoder;
 
     protected User doConvert(User user, UserCreateRequest request) {
 
         user.setName(request.getName());
         user.setSurname(request.getSurname());
         user.setLogin(request.getLogin());
-        user.setPassword(request.getPassword());
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setEmail(request.getEmail());
         user.setGender(request.getGender());
         user.setBirthDate(request.getBirthDate());
@@ -23,10 +27,10 @@ public abstract class EntityConverter<S, T> implements Converter<S, T> {
         user.setWeight(request.getWeight());
         user.setFitnessLevel(request.getFitnessLevel());
         user.setGoal(request.getGoal());
-
-        CurrentStatus currentStatus = new CurrentStatus();
-        currentStatus.setBlocked(request.getIsBlocked());
-        user.setCurrentStatus(currentStatus);
+        user.setMaxPullups(request.getMaxPullups());
+        user.setMaxPushups(request.getMaxPushups());
+        user.setMaxSquats(request.getMaxSquats());
+        user.setMaxDips(request.getMaxDips());
 
         user.setChanged(new Timestamp(new Date().getTime()));
 

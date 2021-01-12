@@ -1,10 +1,7 @@
 package by.zabavskiy.service.impl;
 
-import by.zabavskiy.domain.Calendar;
 import by.zabavskiy.domain.Equipment;
-import by.zabavskiy.repository.impl.CalendarSpringDataRepository;
 import by.zabavskiy.repository.impl.EquipmentSpringDataRepository;
-import by.zabavskiy.service.CalendarService;
 import by.zabavskiy.service.EquipmentService;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +18,31 @@ public class EquipmentServiceImpl implements EquipmentService {
 
     @Override
     public List<Equipment> findAll() {
+        return equipmentSpringDataRepository.findAllEquipment();
+    }
+
+    @Override
+    public List<Equipment> findAllWithCache() {
         return equipmentSpringDataRepository.findAllWithCache();
+    }
+
+    @Override
+    public Equipment findById(Long equipmentId) {
+        return equipmentSpringDataRepository.findEquipmentById(equipmentId);
+    }
+
+    @Override
+    public Equipment save(Equipment equipment) {
+        return equipmentSpringDataRepository.save(equipment);
+    }
+
+    @Override
+    public Equipment update(Equipment equipment) {
+        return equipmentSpringDataRepository.save(equipment);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        equipmentSpringDataRepository.deleteById(id);
     }
 }

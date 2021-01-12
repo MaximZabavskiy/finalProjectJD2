@@ -1,9 +1,7 @@
 package by.zabavskiy.repository.impl;
 
 import by.zabavskiy.domain.Calendar;
-import by.zabavskiy.domain.Role;
 import by.zabavskiy.repository.CalendarRepository;
-import by.zabavskiy.repository.RoleRepository;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 

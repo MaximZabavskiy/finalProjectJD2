@@ -1,18 +1,39 @@
 package by.zabavskiy.domain;
 
-import by.zabavskiy.domain.enums.*;
+import by.zabavskiy.domain.enums.ProgramDifficulty;
+import by.zabavskiy.domain.enums.ProgramDuration;
+import by.zabavskiy.domain.enums.ProgramName;
+import by.zabavskiy.domain.enums.ProgramType;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import javax.persistence.*;
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.Cacheable;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Collections;
 import java.util.Set;
-
 
 
 @Data
@@ -23,7 +44,12 @@ import java.util.Set;
 @Table(name = "m_programs")
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Cacheable
+@AllArgsConstructor
 public class Program implements Serializable {
+
+    public Program() {
+
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -58,7 +84,6 @@ public class Program implements Serializable {
     private CurrentStatus currentStatus;
 
 
-
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     @JsonBackReference
@@ -73,5 +98,6 @@ public class Program implements Serializable {
     @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @OneToMany(mappedBy = "program", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Calendar> calendar = Collections.emptySet();
+
 
 }

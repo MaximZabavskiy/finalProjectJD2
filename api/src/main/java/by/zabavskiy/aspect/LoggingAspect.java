@@ -25,5 +25,4 @@ public class LoggingAspect {
         log.info("Method " + joinPoint.getSignature().getName() + " finished");
         return proceed;
     }
-
 }

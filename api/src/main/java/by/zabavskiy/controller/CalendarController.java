@@ -1,9 +1,7 @@
 package by.zabavskiy.controller;
 
 import by.zabavskiy.domain.Calendar;
-import by.zabavskiy.domain.Program;
 import by.zabavskiy.service.CalendarService;
-import by.zabavskiy.service.ProgramService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.CacheManager;
 import org.springframework.http.HttpStatus;
@@ -15,9 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 
-
 @RestController
-@RequestMapping("/calendar")
+@RequestMapping("/rest/calendar")
 @RequiredArgsConstructor
 public class CalendarController {
 

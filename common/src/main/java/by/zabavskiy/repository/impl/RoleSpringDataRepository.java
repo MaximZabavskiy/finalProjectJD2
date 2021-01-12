@@ -1,6 +1,5 @@
 package by.zabavskiy.repository.impl;
 
-import by.zabavskiy.domain.Program;
 import by.zabavskiy.domain.Role;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.repository.JpaRepository;

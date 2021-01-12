@@ -6,6 +6,7 @@ import by.zabavskiy.repository.impl.RoleSpringDataRepository;
 import by.zabavskiy.service.RoleService;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -25,6 +26,6 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public List<Role> findUserRoles(Long userId) {
-        return roleRepository.findUserRoles(userId);
+        return roleSpringDataRepository.findAllById(Collections.singleton(userId)); // changed
     }
 }

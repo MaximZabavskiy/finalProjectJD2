@@ -24,7 +24,7 @@ public class PersistenceContextBeansConfiguration {
         factoryBean.setDataSource(dataSource);
         factoryBean.setHibernateProperties(getAdditionalProperties());
         factoryBean.afterPropertiesSet();
-        //
+
         SessionFactory sf = factoryBean.getObject();
         System.out.println("## getSessionFactory: " + sf);
         return sf;
