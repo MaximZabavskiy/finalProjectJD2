@@ -36,7 +36,7 @@ import java.util.Set;
 @Data
 @Entity
 @EqualsAndHashCode(exclude = {
-        "roles", "programs", "workouts", "calendar"})
+        "role", "programs", "workouts", "calendar"})
 @Table(name = "m_users")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Cacheable
