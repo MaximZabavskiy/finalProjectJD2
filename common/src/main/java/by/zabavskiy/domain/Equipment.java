@@ -79,12 +79,12 @@ public class Equipment implements Serializable {
     private CurrentStatus currentStatus;
 
 
-    @JsonIgnoreProperties("programs")
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
             name = "l_calendar_equipment",
             joinColumns = {@JoinColumn(name = "calendar_id")},
             inverseJoinColumns = {@JoinColumn(name = "equipment_id")}
     )
+    @JsonIgnoreProperties("equipment")
     private Set<Calendar> calendar = Collections.emptySet();
 }

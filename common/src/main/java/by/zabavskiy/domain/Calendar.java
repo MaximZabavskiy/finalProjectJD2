@@ -79,9 +79,9 @@ public class Calendar implements Serializable {
     @JsonBackReference
     private Workout workout;
 
+    @ManyToMany(mappedBy = "calendar", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonIgnoreProperties("calendar")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @ManyToMany(mappedBy = "calendar", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Equipment> equipment = Collections.emptySet();
 }
 
