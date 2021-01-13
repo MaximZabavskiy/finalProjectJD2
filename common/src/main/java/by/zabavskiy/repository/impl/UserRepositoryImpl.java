@@ -39,4 +39,15 @@ public class UserRepositoryImpl implements UserRepository {
             return session.find(User.class, key);
         }
     }
+
+
+    @Override
+    public Object testHql() {
+        try (Session session = sessionFactory.openSession()) {
+
+            String hqlQuery = "select u.id, u.name from User u where u.name like '%o%' ";
+
+            return session.createQuery(hqlQuery).list();
+        }
+    }
 }
